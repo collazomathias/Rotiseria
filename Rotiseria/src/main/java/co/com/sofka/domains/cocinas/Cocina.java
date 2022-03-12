@@ -48,24 +48,24 @@ public class Cocina extends AggregateEvent<CocinaId>{
         return cocina;
     }
 
-    public void ModificarCocinero(CocineroId cocineroId, NombreCocinero nombreCocinero, TelefonoCocinero telefonoCocinero, Especialidad especialidad) {
-        appendChange(new CocineroModificado(cocineroId, nombreCocinero, telefonoCocinero, especialidad)).apply();
+    public void ModificarCocinero(CocinaId cocinaId, CocineroId cocineroId, NombreCocinero nombreCocinero, TelefonoCocinero telefonoCocinero, Especialidad especialidad) {
+        appendChange(new CocineroModificado(cocinaId, cocineroId, nombreCocinero, telefonoCocinero, especialidad)).apply();
     }
 
-    public void AgregarPedido(PedidoId pedidoId, HoraEntrega horaEntrega, Destino destino, PrecioPedido precioPedido, ArrayList<AlimentoId> alimentos) {
-        appendChange(new PedidoAgregado(pedidoId, horaEntrega, destino, precioPedido, alimentos)).apply();
+    public void AgregarPedido(CocinaId cocinaId, PedidoId pedidoId, HoraEntrega horaEntrega, Destino destino, PrecioPedido precioPedido, ArrayList<AlimentoId> alimentos) {
+        appendChange(new PedidoAgregado(cocinaId, pedidoId, horaEntrega, destino, precioPedido, alimentos)).apply();
     }
 
-    public void QuitarPedido(PedidoId pedidoId) {
-        appendChange(new PedidoQuitado(pedidoId)).apply();
+    public void QuitarPedido(CocinaId cocinaId, PedidoId pedidoId) {
+        appendChange(new PedidoQuitado(cocinaId, pedidoId)).apply();
     }
 
-    public void AgregarUtensilio(UtensilioId utensilioId, TipoUtensilio tipoUtensilio, DescripcionUtensilio descripcionUtensilio) {
-        appendChange(new UtensilioAgregado(utensilioId, tipoUtensilio, descripcionUtensilio)).apply();
+    public void AgregarUtensilio(CocinaId cocinaId, UtensilioId utensilioId, TipoUtensilio tipoUtensilio, DescripcionUtensilio descripcionUtensilio) {
+        appendChange(new UtensilioAgregado(cocinaId, utensilioId, tipoUtensilio, descripcionUtensilio)).apply();
     }
 
-    public void QuitarUtensilio(UtensilioId utensilioId) {
-        appendChange(new UtensilioQuitado(utensilioId)).apply();
+    public void QuitarUtensilio(CocinaId cocinaId, UtensilioId utensilioId) {
+        appendChange(new UtensilioQuitado(cocinaId, utensilioId)).apply();
     }
 
     public Cocinero cocinero() {

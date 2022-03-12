@@ -6,22 +6,29 @@ import co.com.sofka.domains.alimentos.Coccion;
 import co.com.sofka.domains.alimentos.value.AlimentoId;
 import co.com.sofka.domains.alimentos.value.NombreAlimento;
 import co.com.sofka.domains.alimentos.value.PrecioAlimento;
+import co.com.sofka.domains.pedidos.value.PedidoId;
 
 public class AlimentoAgregado extends DomainEvent {
 
+    private final PedidoId pedidoId;
     private final AlimentoId alimentoId;
     private final Categoria categoria;
     private final Coccion coccion;
     private final PrecioAlimento precioAlimento;
     private final NombreAlimento nombreAlimento;
 
-    public AlimentoAgregado(AlimentoId alimentoId, Categoria categoria, Coccion coccion, PrecioAlimento precioAlimento, NombreAlimento nombreAlimento) {
+    public AlimentoAgregado(PedidoId pedidoId, AlimentoId alimentoId, Categoria categoria, Coccion coccion, PrecioAlimento precioAlimento, NombreAlimento nombreAlimento) {
         super("pedidos.event.alimentoagregado");
+        this.pedidoId = pedidoId;
         this.alimentoId = alimentoId;
         this.categoria = categoria;
         this.coccion = coccion;
         this.precioAlimento = precioAlimento;
         this.nombreAlimento = nombreAlimento;
+    }
+
+    public PedidoId getPedidoId() {
+        return pedidoId;
     }
 
     public AlimentoId getAlimentoId() {

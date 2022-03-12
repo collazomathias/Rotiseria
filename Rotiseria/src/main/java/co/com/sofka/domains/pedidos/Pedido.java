@@ -1,8 +1,10 @@
 package co.com.sofka.domains.pedidos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 import co.com.sofka.domains.alimentos.Categoria;
 import co.com.sofka.domains.alimentos.Coccion;
 import co.com.sofka.domains.alimentos.value.AlimentoId;
@@ -40,28 +42,39 @@ public class Pedido extends AggregateEvent<PedidoId> {
         subscribe(new PedidoEventChange(this));
     }
 
-    public void AgregarAlimento(AlimentoId alimentoId, Categoria categoria, Coccion coccion, PrecioAlimento precioAlimento, NombreAlimento nombreAlimento) {
-        appendChange(new AlimentoAgregado(alimentoId, categoria, coccion, precioAlimento, nombreAlimento)).apply();
+    private Pedido(PedidoId pedidoId){
+        super(pedidoId);
+        subscribe(new PedidoEventChange(this));
     }
 
-    public void QuitarAlimento(AlimentoId alimentoId, PrecioAlimento precioAlimento) {
-        appendChange(new AlimentoQuitado(alimentoId, precioAlimento)).apply();
+    public static Pedido from(PedidoId pedidoId, List<DomainEvent> events){
+        var pedido = new Pedido(pedidoId);
+        events.forEach(pedido::applyEvent);
+        return pedido;
     }
 
-    public void ModificarCliente(ClienteId clienteId, NombreCliente nombreCliente, TelefonoCliente telefonoCliente, ArrayList<DestinoId> destinos) {
-        appendChange(new ClienteModificado(clienteId, nombreCliente, telefonoCliente, destinos)).apply();
+    public void AgregarAlimento(PedidoId pedidoId, AlimentoId alimentoId, Categoria categoria, Coccion coccion, PrecioAlimento precioAlimento, NombreAlimento nombreAlimento) {
+        appendChange(new AlimentoAgregado(pedidoId, alimentoId, categoria, coccion, precioAlimento, nombreAlimento)).apply();
     }
 
-    public void ModificarDestino(DestinoId destinoId, Calle calle, Ciudad ciudad, Numero numero) {
-        appendChange(new DestinoModificado(destinoId, calle, ciudad, numero)).apply();
+    public void QuitarAlimento(PedidoId pedidoId, AlimentoId alimentoId, PrecioAlimento precioAlimento) {
+        appendChange(new AlimentoQuitado(pedidoId, alimentoId, precioAlimento)).apply();
     }
 
-    public void ModificarHoraEntrega(HoraEntrega horaEntrega) {
-        appendChange(new HoraEntregaModificada(horaEntrega)).apply();
+    public void ModificarCliente(PedidoId pedidoId, ClienteId clienteId, NombreCliente nombreCliente, TelefonoCliente telefonoCliente, ArrayList<DestinoId> destinos) {
+        appendChange(new ClienteModificado(pedidoId, clienteId, nombreCliente, telefonoCliente, destinos)).apply();
     }
 
-    public void ModificarPrecioPedido(PrecioPedido precioPedido) {
-        appendChange(new PrecioPedidoModificado(precioPedido)).apply();
+    public void ModificarDestino(PedidoId pedidoId, DestinoId destinoId, Calle calle, Ciudad ciudad, Numero numero) {
+        appendChange(new DestinoModificado(pedidoId, destinoId, calle, ciudad, numero)).apply();
+    }
+
+    public void ModificarHoraEntrega(PedidoId pedidoId, HoraEntrega horaEntrega) {
+        appendChange(new HoraEntregaModificada(pedidoId, horaEntrega)).apply();
+    }
+
+    public void ModificarPrecioPedido(PedidoId pedidoId, PrecioPedido precioPedido) {
+        appendChange(new PrecioPedidoModificado(pedidoId, precioPedido)).apply();
     }
 
     public ArrayList<AlimentoId> alimentos() {

@@ -1,34 +1,53 @@
 package co.com.sofka.domains.pedidos.command;
 
-import java.util.Set;
-
 import co.com.sofka.domain.generic.Command;
-import co.com.sofka.domains.alimentos.Alimento;
+import co.com.sofka.domains.alimentos.Categoria;
+import co.com.sofka.domains.alimentos.Coccion;
+import co.com.sofka.domains.alimentos.value.AlimentoId;
+import co.com.sofka.domains.alimentos.value.NombreAlimento;
+import co.com.sofka.domains.alimentos.value.PrecioAlimento;
 import co.com.sofka.domains.pedidos.value.PedidoId;
-import co.com.sofka.domains.pedidos.value.PrecioPedido;
 
 public class AgregarAlimento extends Command {
     
     private final PedidoId pedidoId;
-    private final PrecioPedido precioPedido;
-    private final Set<Alimento> alimentos;
+    private final AlimentoId alimentoId;
+    private final Categoria categoria;
+    private final Coccion coccion;
+    private final PrecioAlimento precioAlimento;
+    private final NombreAlimento nombreAlimento;
 
-    public AgregarAlimento(PedidoId pedidoId, PrecioPedido precioPedido, Set<Alimento> alimentos) {
+    public AgregarAlimento(PedidoId pedidoId, AlimentoId alimentoId, Categoria categoria, Coccion coccion, PrecioAlimento precioAlimento, NombreAlimento nombreAlimento) {
         this.pedidoId = pedidoId;
-        this.precioPedido = precioPedido;
-        this.alimentos = alimentos;
+        this.alimentoId = alimentoId;
+        this.categoria = categoria;
+        this.coccion = coccion;
+        this.precioAlimento = precioAlimento;
+        this.nombreAlimento = nombreAlimento;
     }
 
-    public Set<Alimento> getAlimentos() {
-        return alimentos;
+    public AlimentoId getAlimentoId() {
+        return alimentoId;
     }
 
-    public PrecioPedido getPrecioPedido() {
-        return precioPedido;
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Coccion getCoccion() {
+        return coccion;
+    }
+
+    public NombreAlimento getNombreAlimento() {
+        return nombreAlimento;
     }
 
     public PedidoId getPedidoId() {
         return pedidoId;
+    }
+
+    public PrecioAlimento getPrecioAlimento() {
+        return precioAlimento;
     }
 
 }

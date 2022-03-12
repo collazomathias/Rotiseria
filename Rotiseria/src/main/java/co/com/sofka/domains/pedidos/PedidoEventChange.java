@@ -64,7 +64,7 @@ public class PedidoEventChange extends EventChange {
                     event.getTelefonoCliente().value().isBlank()) {
                 throw new IllegalArgumentException("El teléfono del cliente no puede ser nulo.");
             }
-            pedido.cliente = new Cliente(event.getClienteId(), event.getNombreCliente(), event.getTelefonoCliente(), event.getDestinos());
+            pedido.cliente = new Cliente(event.getClienteId(), event.getNombreCliente(), event.getTelefonoCliente());
         });
 
         apply((DestinoModificado event) -> {

@@ -49,11 +49,11 @@ public class CocinaEventChange extends EventChange {
             event.getPedidoId().value().isBlank()){
                 throw new IllegalArgumentException("El ID del pedido no puede ser nulo.");
             }
-            cocina.pedidos.add(new PedidoId(event.getPedidoId()));
+            cocina.pedidos.add(PedidoId.of(event.getPedidoId().value()));
         });
 
         apply((PedidoQuitado event) -> {
-            cocina.pedidos.removeIf(pedido -> pedido.getPedidoId().value().equals(event.getPedidoId().value()));
+            cocina.pedidos.removeIf(pedido -> pedido.pedidoId().value().equals(event.getPedidoId().value()));
         });
 
         apply((UtensilioAgregado event) -> {

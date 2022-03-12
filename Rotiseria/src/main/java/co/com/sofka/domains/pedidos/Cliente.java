@@ -12,14 +12,12 @@ public class Cliente extends Entity<ClienteId> {
 
     private final NombreCliente nombreCliente;
     private final TelefonoCliente telefonoCliente;
-    private final ArrayList<DestinoId> destinos;
+    protected ArrayList<DestinoId> destinos;
 
     public Cliente(ClienteId clienteId, 
                 NombreCliente nombreCliente,
-                TelefonoCliente telefonoCliente,
-                ArrayList<DestinoId> destinos) {
+                TelefonoCliente telefonoCliente) {
         super(clienteId);
-        this.destinos = destinos;
         this.nombreCliente = nombreCliente;
         this.telefonoCliente = telefonoCliente;
     }
