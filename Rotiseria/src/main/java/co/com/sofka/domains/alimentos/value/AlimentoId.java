@@ -6,8 +6,14 @@ public class AlimentoId extends Identity {
 
     protected AlimentoId alimentoId;
 
-    public AlimentoId(AlimentoId alimentoId){
-        this.alimentoId = alimentoId;
+    private AlimentoId(String value){
+        super(value);
+    }
+
+    public AlimentoId(){}
+
+    public static AlimentoId of(String value) {
+        return new AlimentoId(value);
     }
 
     public AlimentoId alimentoId() {

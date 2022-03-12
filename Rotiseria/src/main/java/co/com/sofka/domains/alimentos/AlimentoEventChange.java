@@ -11,6 +11,7 @@ import co.com.sofka.domains.alimentos.event.ExtraQuitado;
 import co.com.sofka.domains.alimentos.event.IngredienteAgregado;
 import co.com.sofka.domains.alimentos.event.IngredienteQuitado;
 import co.com.sofka.domains.alimentos.event.PrecioAlimentoModificado;
+import co.com.sofka.domains.alimentos.value.AlimentoId;
 import co.com.sofka.domains.alimentos.value.Ingrediente;
 import co.com.sofka.domains.alimentos.value.PrecioAlimento;
 
@@ -48,7 +49,7 @@ public class AlimentoEventChange extends EventChange {
             event.getDescripcionExtra().value().isBlank()) {
                 throw new IllegalArgumentException("El precio del extra debe ser mayor a 0.");
             }
-            alimento.extras.add(new Extra(event.getExtraId(), event.getPrecioExtra(), event.getTipoExtra(), event.getDescripcionExtra()));
+            alimento.extras.add(new Extra(AlimentoId.of(event.getAlimentoId().value()), event.getExtraId(), event.getPrecioExtra(), event.getTipoExtra(), event.getDescripcionExtra()));
         });
 
         apply((ExtraQuitado event) -> {
@@ -61,7 +62,7 @@ public class AlimentoEventChange extends EventChange {
             event.getIngrediente().value().isBlank()){
                 throw new IllegalArgumentException("El nombre del ingrediente no puede ser nulo.");
             }
-            alimento.ingredientes.add(new Ingrediente(event.getIngrediente().value()));
+            alimento.ingredientes.add(new Ingrediente(event.getAlimentoId(), event.getIngrediente().value()));
         });
 
         apply((IngredienteQuitado event) -> {
@@ -73,7 +74,7 @@ public class AlimentoEventChange extends EventChange {
             event.getTipoCategoria().value().isBlank()) {
                 throw new IllegalArgumentException("La categoría no puede ser nula.");
             }
-            alimento.categoria = new Categoria(event.getCategoriaId(), event.getProcedencia(), event.getTipoCategoria());
+            alimento.categoria = new Categoria(event.getAlimentoId(), event.getCategoriaId(), event.getProcedencia(), event.getTipoCategoria());
         });
 
         apply((CoccionModificada event) -> {
@@ -82,7 +83,7 @@ public class AlimentoEventChange extends EventChange {
             event.getTipoCoccion().value().isBlank()) {
                 throw new IllegalArgumentException("La cocción no puede ser nula");
             }
-            alimento.coccion = new Coccion(event.getCoccionId(), event.getDuracion(), event.getTemperatura(), event.getTipoCoccion());
+            alimento.coccion = new Coccion(event.getAlimentoId(), event.getCoccionId(), event.getDuracion(), event.getTemperatura(), event.getTipoCoccion());
         });
 
         apply((PrecioAlimentoModificado event) -> {

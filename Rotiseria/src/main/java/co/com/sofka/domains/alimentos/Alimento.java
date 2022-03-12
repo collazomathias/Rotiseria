@@ -1,8 +1,10 @@
 package co.com.sofka.domains.alimentos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 import co.com.sofka.domains.alimentos.event.AlimentoCreado;
 import co.com.sofka.domains.alimentos.event.CategoriaModificada;
 import co.com.sofka.domains.alimentos.event.CoccionModificada;
@@ -44,35 +46,45 @@ public class Alimento extends AggregateEvent<AlimentoId> {
         super(alimentoId);
         appendChange(new AlimentoCreado(categoria, coccion, precioAlimento, nombreAlimento)).apply();
         subscribe(new AlimentoEventChange(this));
-
     }
 
-    public void AgregarExtra(ExtraId extraId, PrecioExtra precioExtra, TipoExtra tipoExtra, DescripcionExtra descripcionExtra) {
-        appendChange(new ExtraAgregado(extraId, precioExtra, tipoExtra, descripcionExtra)).apply();
+    private Alimento(AlimentoId alimentoId){
+        super(alimentoId);
+        subscribe(new AlimentoEventChange(this));
     }
 
-    public void QuitarExtra(ExtraId extraId, PrecioExtra precioExtra) {
-        appendChange(new ExtraQuitado(extraId, precioExtra)).apply();
+    public static Alimento from(AlimentoId alimentoId, List<DomainEvent> events){
+        var alimento = new Alimento(alimentoId);
+        events.forEach(alimento::applyEvent);
+        return alimento;
     }
 
-    public void AgregarIngrediente(Ingrediente ingrediente) {
-        appendChange(new IngredienteAgregado(ingrediente)).apply();
+    public void AgregarExtra(AlimentoId alimentoId, ExtraId extraId, PrecioExtra precioExtra, TipoExtra tipoExtra, DescripcionExtra descripcionExtra) {
+        appendChange(new ExtraAgregado(alimentoId, extraId, precioExtra, tipoExtra, descripcionExtra)).apply();
     }
 
-    public void QuitarIngrediente(Ingrediente ingrediente) {
-        appendChange(new IngredienteQuitado(ingrediente)).apply();
+    public void QuitarExtra(AlimentoId alimentoId, ExtraId extraId, PrecioExtra precioExtra) {
+        appendChange(new ExtraQuitado(alimentoId, extraId, precioExtra)).apply();
     }
 
-    public void ModificarCategoria(CategoriaId categoriaId, Procedencia procedencia, TipoCategoria tipoCategoria) {
-        appendChange(new CategoriaModificada(categoriaId, procedencia, tipoCategoria)).apply();
+    public void AgregarIngrediente(AlimentoId alimentoId, Ingrediente ingrediente) {
+        appendChange(new IngredienteAgregado(alimentoId, ingrediente)).apply();
     }
 
-    public void ModificarCoccion(CoccionId coccionId, Duracion duracion, Temperatura temperatura, TipoCoccion tipoCoccion) {
-        appendChange(new CoccionModificada(coccionId, duracion, temperatura, tipoCoccion)).apply();
+    public void QuitarIngrediente(AlimentoId alimentoId, Ingrediente ingrediente) {
+        appendChange(new IngredienteQuitado(alimentoId, ingrediente)).apply();
     }
 
-    public void ModificarPrecioAlimento(PrecioAlimento precioAlimento) {
-        appendChange(new PrecioAlimentoModificado(precioAlimento)).apply();
+    public void ModificarCategoria(AlimentoId alimentoId, CategoriaId categoriaId, Procedencia procedencia, TipoCategoria tipoCategoria) {
+        appendChange(new CategoriaModificada(alimentoId, categoriaId, procedencia, tipoCategoria)).apply();
+    }
+
+    public void ModificarCoccion(AlimentoId alimentoId, CoccionId coccionId, Duracion duracion, Temperatura temperatura, TipoCoccion tipoCoccion) {
+        appendChange(new CoccionModificada(alimentoId, coccionId, duracion, temperatura, tipoCoccion)).apply();
+    }
+
+    public void ModificarPrecioAlimento(AlimentoId alimentoId, PrecioAlimento precioAlimento) {
+        appendChange(new PrecioAlimentoModificado(alimentoId, precioAlimento)).apply();
     }
 
     public Categoria categoria() {

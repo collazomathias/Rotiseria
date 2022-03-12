@@ -1,8 +1,10 @@
 package co.com.sofka.domains.cocinas;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 import co.com.sofka.domains.alimentos.value.AlimentoId;
 import co.com.sofka.domains.cocinas.event.CocinaCreada;
 import co.com.sofka.domains.cocinas.event.CocineroModificado;
@@ -33,6 +35,17 @@ public class Cocina extends AggregateEvent<CocinaId>{
         super(cocinaId);
         appendChange(new CocinaCreada(cocinero)).apply();
         subscribe(new CocinaEventChange(this));
+    }
+
+    private Cocina(CocinaId cocinaId){
+        super(cocinaId);
+        subscribe(new CocinaEventChange(this));
+    }
+
+    public static Cocina from(CocinaId cocinaId, List<DomainEvent> events){
+        var cocina = new Cocina(cocinaId);
+        events.forEach(cocina::applyEvent);
+        return cocina;
     }
 
     public void ModificarCocinero(CocineroId cocineroId, NombreCocinero nombreCocinero, TelefonoCocinero telefonoCocinero, Especialidad especialidad) {

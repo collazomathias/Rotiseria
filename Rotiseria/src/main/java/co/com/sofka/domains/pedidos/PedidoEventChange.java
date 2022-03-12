@@ -47,7 +47,7 @@ public class PedidoEventChange extends EventChange {
             event.getAlimentoId().value().isBlank()){
                 throw new IllegalArgumentException("El ID del alimento no puede ser nulo.");
             }
-            pedido.alimentos.add(new AlimentoId(event.getAlimentoId()));
+            pedido.alimentos.add(AlimentoId.of(event.getAlimentoId().value()));
         });
 
         apply((AlimentoQuitado event) -> {
