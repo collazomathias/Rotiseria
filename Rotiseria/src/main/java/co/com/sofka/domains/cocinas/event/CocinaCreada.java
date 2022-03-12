@@ -12,7 +12,7 @@ public class CocinaCreada extends DomainEvent {
         this.cocinero = cocinero;
     }
 
-    public Cocinero gocinero() {
+    public Cocinero getCocinero() {
         return cocinero;
     }
     

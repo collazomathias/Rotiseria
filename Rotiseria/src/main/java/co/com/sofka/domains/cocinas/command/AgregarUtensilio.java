@@ -1,27 +1,32 @@
 package co.com.sofka.domains.cocinas.command;
 
-import java.util.Set;
-
 import co.com.sofka.domain.generic.Command;
-import co.com.sofka.domains.cocinas.Utensilio;
-import co.com.sofka.domains.cocinas.value.CocinaId;
+import co.com.sofka.domains.cocinas.value.DescripcionUtensilio;
+import co.com.sofka.domains.cocinas.value.TipoUtensilio;
+import co.com.sofka.domains.cocinas.value.UtensilioId;
 
 public class AgregarUtensilio extends Command {
 
-    private final CocinaId cocinaId;
-    private final Set<Utensilio> utensilios;
+    private final UtensilioId utensilioId;
+    private final TipoUtensilio tipoUtensilio;
+    private final DescripcionUtensilio descripcionUtensilio;
 
-    public AgregarUtensilio(CocinaId cocinaId, Set<Utensilio> utensilios) {
-        this.cocinaId = cocinaId;
-        this.utensilios = utensilios;
+    public AgregarUtensilio(UtensilioId utensilioId, TipoUtensilio tipoUtensilio, DescripcionUtensilio descripcionUtensilio) {
+        this.utensilioId = utensilioId;
+        this.tipoUtensilio = tipoUtensilio;
+        this.descripcionUtensilio = descripcionUtensilio;
     }
 
-    public CocinaId getCocinaId() {
-        return cocinaId;
+    public DescripcionUtensilio getDescripcionUtensilio() {
+        return descripcionUtensilio;
+    }
+    
+    public TipoUtensilio getTipoUtensilio() {
+        return tipoUtensilio;
     }
 
-    public Set<Utensilio> getUtensilios() {
-        return utensilios;
+    public UtensilioId getUtensilioId() {
+        return utensilioId;
     }
     
 }

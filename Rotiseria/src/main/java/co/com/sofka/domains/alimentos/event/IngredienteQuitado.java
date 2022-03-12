@@ -1,28 +1,19 @@
 package co.com.sofka.domains.alimentos.event;
 
-import java.util.Set;
-
 import co.com.sofka.domain.generic.DomainEvent;
-import co.com.sofka.domains.alimentos.value.AlimentoId;
 import co.com.sofka.domains.alimentos.value.Ingrediente;
 
 public class IngredienteQuitado extends DomainEvent {
     
-    private final AlimentoId alimentoId;
-    private final Set<Ingrediente> ingredientes;
+    private final Ingrediente ingrediente;
 
-    public IngredienteQuitado(AlimentoId alimentoId, Set<Ingrediente> ingredientes) {
+    public IngredienteQuitado(Ingrediente ingrediente) {
         super("alimentos.event.ingredientequitado");
-        this.alimentoId = alimentoId;
-        this.ingredientes = ingredientes;
+        this.ingrediente = ingrediente;
     }
 
-    public AlimentoId getAlimentoId() {
-        return alimentoId;
-    }
-
-    public Set<Ingrediente> getIngredientes() {
-        return ingredientes;
+    public Ingrediente getIngrediente() {
+        return ingrediente;
     }
 
 }

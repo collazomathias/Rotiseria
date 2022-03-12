@@ -1,25 +1,39 @@
 package co.com.sofka.domains.alimentos.command;
 
 import co.com.sofka.domain.generic.Command;
-import co.com.sofka.domains.alimentos.Coccion;
-import co.com.sofka.domains.alimentos.value.AlimentoId;
+import co.com.sofka.domains.alimentos.value.CoccionId;
+import co.com.sofka.domains.alimentos.value.Duracion;
+import co.com.sofka.domains.alimentos.value.Temperatura;
+import co.com.sofka.domains.alimentos.value.TipoCoccion;
 
 public class ModificarCoccion extends Command {
 
-    private final AlimentoId alimentoId;
-    private final Coccion coccion;
+    private final CoccionId coccionId;
+    private final Duracion duracion;
+    private final Temperatura temperatura;
+    private final TipoCoccion tipoCoccion;
 
-    public ModificarCoccion(AlimentoId alimentoId, Coccion coccion) {
-        this.alimentoId = alimentoId;
-        this.coccion = coccion;
+    public ModificarCoccion(CoccionId coccionId, Duracion duracion, Temperatura temperatura, TipoCoccion tipoCoccion) {
+        this.coccionId = coccionId;
+        this.duracion = duracion;
+        this.temperatura = temperatura;
+        this.tipoCoccion = tipoCoccion;
     }
 
-    public AlimentoId getAlimentoId() {
-        return alimentoId;
+    public CoccionId getCoccionId() {
+        return coccionId;
     }
 
-    public Coccion getCoccion() {
-        return coccion;
+    public Duracion getDuracion() {
+        return duracion;
+    }
+
+    public Temperatura getTemperatura() {
+        return temperatura;
+    }
+
+    public TipoCoccion getTipoCoccion() {
+        return tipoCoccion;
     }
     
 }

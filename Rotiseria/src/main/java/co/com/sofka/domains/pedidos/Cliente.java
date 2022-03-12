@@ -1,30 +1,27 @@
 package co.com.sofka.domains.pedidos;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import co.com.sofka.domain.generic.Entity;
 import co.com.sofka.domains.pedidos.value.ClienteId;
+import co.com.sofka.domains.pedidos.value.DestinoId;
 import co.com.sofka.domains.pedidos.value.NombreCliente;
 import co.com.sofka.domains.pedidos.value.TelefonoCliente;
 
 public class Cliente extends Entity<ClienteId> {
 
-    private final Set<Destino> destinos;
     private final NombreCliente nombreCliente;
     private final TelefonoCliente telefonoCliente;
+    private final ArrayList<DestinoId> destinos;
 
     public Cliente(ClienteId clienteId, 
-                Set<Destino> destinos,
                 NombreCliente nombreCliente,
-                TelefonoCliente telefonoCliente) {
+                TelefonoCliente telefonoCliente,
+                ArrayList<DestinoId> destinos) {
         super(clienteId);
         this.destinos = destinos;
         this.nombreCliente = nombreCliente;
         this.telefonoCliente = telefonoCliente;
-    }
-
-    public Set<Destino> destinos() {
-        return destinos;
     }
 
     public NombreCliente nombreCliente() {
@@ -33,6 +30,10 @@ public class Cliente extends Entity<ClienteId> {
 
     public TelefonoCliente telefonoCliente() {
         return telefonoCliente;
+    }
+
+    public ArrayList<DestinoId> destinos() {
+        return destinos;
     }
     
 }

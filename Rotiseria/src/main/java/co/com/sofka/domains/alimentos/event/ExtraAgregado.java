@@ -1,35 +1,40 @@
 package co.com.sofka.domains.alimentos.event;
 
-import java.util.Set;
-
 import co.com.sofka.domain.generic.DomainEvent;
-import co.com.sofka.domains.alimentos.Extra;
-import co.com.sofka.domains.alimentos.value.AlimentoId;
-import co.com.sofka.domains.alimentos.value.PrecioAlimento;
+import co.com.sofka.domains.alimentos.value.DescripcionExtra;
+import co.com.sofka.domains.alimentos.value.ExtraId;
+import co.com.sofka.domains.alimentos.value.PrecioExtra;
+import co.com.sofka.domains.alimentos.value.TipoExtra;
 
 public class ExtraAgregado extends DomainEvent {
     
-    private final AlimentoId alimentoId;
-    private final PrecioAlimento precioAlimento;
-    private final Set<Extra> extras;
+    private final ExtraId extraId;
+    private final PrecioExtra precioExtra;
+    private final TipoExtra tipoExtra;
+    private final DescripcionExtra descripcionExtra;
 
-    public ExtraAgregado(AlimentoId alimentoId, PrecioAlimento precioAlimento, Set<Extra> extras) {
+    public ExtraAgregado(ExtraId extraId, PrecioExtra precioExtra, TipoExtra tipoExtra, DescripcionExtra descripcionExtra) {
         super("alimentos.event.extraagregado");
-        this.alimentoId = alimentoId;
-        this.precioAlimento = precioAlimento;
-        this.extras = extras;
+        this.extraId = extraId;
+        this.precioExtra = precioExtra;
+        this.tipoExtra = tipoExtra;
+        this.descripcionExtra = descripcionExtra;
     }
 
-    public AlimentoId getAlimentoId() {
-        return alimentoId;
+    public ExtraId getExtraId() {
+        return extraId;
     }
 
-    public PrecioAlimento getPrecioAlimento() {
-        return precioAlimento;
+    public PrecioExtra getPrecioExtra() {
+        return precioExtra;
+    }
+    
+    public DescripcionExtra getDescripcionExtra() {
+        return descripcionExtra;
     }
 
-    public Set<Extra> getExtras() {
-        return extras;
+    public TipoExtra getTipoExtra() {
+        return tipoExtra;
     }
 
 }

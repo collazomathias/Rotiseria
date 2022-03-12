@@ -1,34 +1,39 @@
 package co.com.sofka.domains.alimentos.command;
 
-import java.util.Set;
-
 import co.com.sofka.domain.generic.Command;
-import co.com.sofka.domains.alimentos.Extra;
-import co.com.sofka.domains.alimentos.value.AlimentoId;
-import co.com.sofka.domains.alimentos.value.PrecioAlimento;
+import co.com.sofka.domains.alimentos.value.DescripcionExtra;
+import co.com.sofka.domains.alimentos.value.ExtraId;
+import co.com.sofka.domains.alimentos.value.PrecioExtra;
+import co.com.sofka.domains.alimentos.value.TipoExtra;
 
 public class AgregarExtra extends Command {
 
-    private final AlimentoId alimentoId;
-    private final PrecioAlimento precioAlimento;
-    private final Set<Extra> extras;
+    private final ExtraId extraId;
+    private final PrecioExtra precioExtra;
+    private final TipoExtra tipoExtra;
+    private final DescripcionExtra descripcionExtra;
 
-    public AgregarExtra(AlimentoId alimentoId, PrecioAlimento precioAlimento, Set<Extra> extras) {
-        this.alimentoId = alimentoId;
-        this.precioAlimento = precioAlimento;
-        this.extras = extras;
+    public AgregarExtra(ExtraId extraId, PrecioExtra precioExtra, TipoExtra tipoExtra, DescripcionExtra descripcionExtra) {
+        this.extraId = extraId;
+        this.precioExtra = precioExtra;
+        this.tipoExtra = tipoExtra;
+        this.descripcionExtra = descripcionExtra;
     }
 
-    public AlimentoId getAlimentoId() {
-        return alimentoId;
+    public DescripcionExtra getDescripcionExtra() {
+        return descripcionExtra;
     }
 
-    public Set<Extra> getExtras() {
-        return extras;
+    public ExtraId getExtraId() {
+        return extraId;
     }
 
-    public PrecioAlimento getPrecioAlimento() {
-        return precioAlimento;
+    public PrecioExtra getPrecioExtra() {
+        return precioExtra;
+    }
+    
+    public TipoExtra getTipoExtra() {
+        return tipoExtra;
     }
     
 }

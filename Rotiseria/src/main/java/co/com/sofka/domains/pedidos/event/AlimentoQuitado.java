@@ -1,34 +1,26 @@
 package co.com.sofka.domains.pedidos.event;
 
-import java.util.Set;
-
 import co.com.sofka.domain.generic.DomainEvent;
 import co.com.sofka.domains.alimentos.value.AlimentoId;
-import co.com.sofka.domains.pedidos.value.PedidoId;
-import co.com.sofka.domains.pedidos.value.PrecioPedido;
+import co.com.sofka.domains.alimentos.value.PrecioAlimento;
 
 public class AlimentoQuitado extends DomainEvent {
 
-    private final PedidoId pedidoId;
-    private final PrecioPedido precioPedido;
-    private final Set<AlimentoId> alimentos;
+    private final AlimentoId alimentoId;
+    private final PrecioAlimento precioAlimento;
 
-    public AlimentoQuitado(PedidoId pedidoId, PrecioPedido precioPedido, Set<AlimentoId> alimentos) {
+    public AlimentoQuitado(AlimentoId alimentoId, PrecioAlimento precioAlimento) {
         super("pedidos.event.alimentoquitado");
-        this.pedidoId = pedidoId;
-        this.precioPedido = precioPedido;
-        this.alimentos = alimentos;
+        this.alimentoId = alimentoId;
+        this.precioAlimento = precioAlimento;
     }
 
-    public Set<AlimentoId> getAlimentos() {
-        return alimentos;
+    public AlimentoId getAlimentoId() {
+        return alimentoId;
     }
 
-    public PrecioPedido getPrecioPedido() {
-        return precioPedido;
+    public PrecioAlimento getPrecioAlimento() {
+        return precioAlimento;
     }
 
-    public PedidoId getPedidoId() {
-        return pedidoId;
-    }
 }

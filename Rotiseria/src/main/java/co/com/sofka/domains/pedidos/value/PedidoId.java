@@ -3,15 +3,15 @@ package co.com.sofka.domains.pedidos.value;
 import co.com.sofka.domain.generic.Identity;
 
 public class PedidoId extends Identity {
+
+    protected PedidoId pedidoId;
     
-    private PedidoId(String pedidoId){
-        super(pedidoId);
+    public PedidoId(PedidoId pedidoId){
+        this.pedidoId = pedidoId;
     }
 
-    public PedidoId(){}
-
-    public static PedidoId of(String pedidoId) {
-        return new PedidoId(pedidoId);
+    public PedidoId getPedidoId() {
+        return pedidoId;
     }
 
 }

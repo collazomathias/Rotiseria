@@ -1,26 +1,40 @@
 package co.com.sofka.domains.pedidos.event;
 
 import co.com.sofka.domain.generic.DomainEvent;
-import co.com.sofka.domains.pedidos.Destino;
-import co.com.sofka.domains.pedidos.value.PedidoId;
+import co.com.sofka.domains.pedidos.value.Calle;
+import co.com.sofka.domains.pedidos.value.Ciudad;
+import co.com.sofka.domains.pedidos.value.DestinoId;
+import co.com.sofka.domains.pedidos.value.Numero;
 
 public class DestinoModificado extends DomainEvent {
     
-    private final PedidoId pedidoId;
-    private final Destino destino;
+    private final DestinoId destinoId;
+    private final Calle calle;
+    private final Ciudad ciudad;
+    private final Numero numero;
 
-    public DestinoModificado(PedidoId pedidoId, Destino destino) {
+    public DestinoModificado(DestinoId destinoId, Calle calle, Ciudad ciudad, Numero numero) {
         super("pedidos.event.destinomodificado");
-        this.pedidoId = pedidoId;
-        this.destino = destino;
+        this.destinoId = destinoId;
+        this.calle = calle;
+        this.ciudad = ciudad;
+        this.numero = numero;
     }
 
-    public Destino getDestino() {
-        return destino;
+    public DestinoId getDestinoId() {
+        return destinoId;
     }
 
-    public PedidoId getPedidoId() {
-        return pedidoId;
+    public Calle getCalle() {
+        return calle;
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public Numero getNumero() {
+        return numero;
     }
 
 }

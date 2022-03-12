@@ -1,35 +1,47 @@
 package co.com.sofka.domains.pedidos.event;
 
-import java.util.Set;
-
 import co.com.sofka.domain.generic.DomainEvent;
+import co.com.sofka.domains.alimentos.Categoria;
+import co.com.sofka.domains.alimentos.Coccion;
 import co.com.sofka.domains.alimentos.value.AlimentoId;
-import co.com.sofka.domains.pedidos.value.PedidoId;
-import co.com.sofka.domains.pedidos.value.PrecioPedido;
+import co.com.sofka.domains.alimentos.value.NombreAlimento;
+import co.com.sofka.domains.alimentos.value.PrecioAlimento;
 
 public class AlimentoAgregado extends DomainEvent {
 
-    private final PedidoId pedidoId;
-    private final PrecioPedido precioPedido;
-    private final Set<AlimentoId> alimentos;
+    private final AlimentoId alimentoId;
+    private final Categoria categoria;
+    private final Coccion coccion;
+    private final PrecioAlimento precioAlimento;
+    private final NombreAlimento nombreAlimento;
 
-    public AlimentoAgregado(PedidoId pedidoId, PrecioPedido precioPedido, Set<AlimentoId> alimentos) {
+    public AlimentoAgregado(AlimentoId alimentoId, Categoria categoria, Coccion coccion, PrecioAlimento precioAlimento, NombreAlimento nombreAlimento) {
         super("pedidos.event.alimentoagregado");
-        this.pedidoId = pedidoId;
-        this.precioPedido = precioPedido;
-        this.alimentos = alimentos;
+        this.alimentoId = alimentoId;
+        this.categoria = categoria;
+        this.coccion = coccion;
+        this.precioAlimento = precioAlimento;
+        this.nombreAlimento = nombreAlimento;
     }
 
-    public Set<AlimentoId> getAlimentos() {
-        return alimentos;
+    public AlimentoId getAlimentoId() {
+        return alimentoId;
+    }
+    
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public PrecioPedido getPrecioPedido() {
-        return precioPedido;
+    public Coccion getCoccion() {
+        return coccion;
     }
 
-    public PedidoId getPedidoId() {
-        return pedidoId;
+    public NombreAlimento getNombreAlimento() {
+        return nombreAlimento;
+    }
+
+    public PrecioAlimento getPrecioAlimento() {
+        return precioAlimento;
     }
     
 }

@@ -1,34 +1,26 @@
 package co.com.sofka.domains.alimentos.command;
 
-import java.util.Set;
 
 import co.com.sofka.domain.generic.Command;
-import co.com.sofka.domains.alimentos.Extra;
-import co.com.sofka.domains.alimentos.value.AlimentoId;
-import co.com.sofka.domains.alimentos.value.PrecioAlimento;
+import co.com.sofka.domains.alimentos.value.ExtraId;
+import co.com.sofka.domains.alimentos.value.PrecioExtra;
 
 public class QuitarExtra extends Command {
 
-    private final AlimentoId alimentoId;
-    private final PrecioAlimento precioAlimento;
-    private final Set<Extra> extras;
+    private final ExtraId extraId;
+    private final PrecioExtra precioExtra;
 
-    public QuitarExtra(AlimentoId alimentoId, PrecioAlimento precioAlimento, Set<Extra> extras) {
-        this.alimentoId = alimentoId;
-        this.precioAlimento = precioAlimento;
-        this.extras = extras;
+    public QuitarExtra(ExtraId extraId, PrecioExtra precioExtra) {
+        this.extraId = extraId;
+        this.precioExtra = precioExtra;
     }
 
-    public AlimentoId getAlimentoId() {
-        return alimentoId;
+    public ExtraId getExtraId() {
+        return extraId;
     }
-
-    public Set<Extra> getExtras() {
-        return extras;
-    }
-
-    public PrecioAlimento getPrecioAlimento() {
-        return precioAlimento;
+    
+    public PrecioExtra getPrecioExtra() {
+        return precioExtra;
     }
     
 }
